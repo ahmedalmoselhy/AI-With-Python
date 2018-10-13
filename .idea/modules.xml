@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/AI-with-Python.iml" filepath="$PROJECT_DIR$/.idea/AI-with-Python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../UsingDatabasesWithPython-Course/.idea/UsingDatabasesWithPython-Course.iml" filepath="$PROJECT_DIR$/../UsingDatabasesWithPython-Course/.idea/UsingDatabasesWithPython-Course.iml" />
+    </modules>
+  </component>
+</project>

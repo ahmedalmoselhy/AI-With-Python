@@ -1,6 +1,6 @@
 import copy
 
-class queue:
+class Queue:
     L = []
     def __init__(self):
         print(self.L)
@@ -16,7 +16,7 @@ class queue:
     def isEmpty(self):
         return self.count() == 0
 ################
-class stack:
+class Stack:
     L = []
     def __init__(self):
         print(self.L)
@@ -63,4 +63,72 @@ class Maze:
     def setGoalNode(self, x, y):
         self._goalNode = (x, y)
 
-    
+    def addMazeSquare(self, x, y, isLeft, isRight, isTop, isBottom):
+        newMazeSquare = MazeNode(x, y, isLeft, isRight, isTop, isBottom)
+        self._maze[y][x] = newMazeSquare
+
+    def getMazeNodeByXY(self, x, y):
+        return self._maze[y][x]
+
+    def getMazeNodeByCoords(self, coords):
+        return self._maze[coords[1]][coords[0]]
+
+    def getMazeNodeChildren(self, x, y):
+        children = []
+        if (x > 0 and not self._maze[y][x]._isLeft):
+            children.append((self._maze[y][x - 1]._x, self._maze[y][x - 1]._y))
+        if (x < self._xSquare - 1 and not self._maze[y][x]._isRight):
+            children.append((self._maze[y][x + 1]._x, self._maze[y][x + 1]._y))
+        if (y > 0 and not self._maze[y][x]._isTop):
+            children.append((self._maze[y - 1][x]._x, self._maze[y - 1][x]._y))
+        if (x < self._ySquare - 1 and not self._maze[y][x]._isBottom):
+            children.append((self._maze[y + 1][x]._x, self._maze[y + 1][x]._y))
+        return children
+
+    def depthFirstTraverse(self):
+        if (self._startNode is None or self._goalNode is None):
+            return None
+
+        stack = Stack()
+        stack.push([self._startNode])
+        paths = []
+
+        while (not stack.isEmpty()):
+            currentPath = stack.pop()
+            currentXY = currentPath[-1]
+            if (self._goalNode == currentXY):
+                paths.append(currentPath)
+            currentNode = self.getMazeNodeByCoords(currentXY)
+            currentChildren = self.getMazeNodeChildren(currentXY[0], currentXY[1])[::-1]
+            for child in currentChildren:
+                if (child in currentPath):
+                    continue
+                stack.push(currentPath + [child])
+        return paths
+
+    def breadthFirstTraverse(self):
+        if (self._startNode is None or self._goalNode is None):
+            return None
+
+        queue = Queue()
+        queue.enqueue([self._startNode])
+        paths = []
+
+        while (not queue.isEmpty()):
+            currentPath = queue.dequeue()
+            currentXY = currentPath[-1]
+            if (self._goalNode == currentXY):
+                paths.append(currentPath)
+            currentNode = self.getMazeNodeByCoords(currentXY)
+            currentChildren = self.getMazeNodeChildren(currentXY[0], currentXY[1])[::-1]
+            for child in currentChildren:
+                if (child in currentPath):
+                    continue
+                queue.enqueue(currentPath + [child])
+        return paths
+
+
+
+##########################
+# Main App
+

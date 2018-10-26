@@ -132,10 +132,16 @@ class Maze:
 ##########################
 # Main App
 
+
+# The maze has (#Columns, #Rows)
 game = Maze(7, 6)
 
-
+# from here on it depends on the maze you want to solve
+# depending on the maze you have, it's design and size, the values will be different,
+# also the code will be bigger or smaller
+# Values Are :
 # (x, y, isLeft, isRight, isTop, isBottom)
+
 # First Row
 game.addMazeSquare(0, 0, True, False, True, False)
 game.addMazeSquare(1, 0, False, False, True, True)
@@ -145,5 +151,5 @@ game.addMazeSquare(4, 0, True, False, True, False)
 game.addMazeSquare(5, 0, False, False, True, False)
 game.addMazeSquare(6, 0, False, True, True, True)
 
-
+# Second Row
 

@@ -132,3 +132,18 @@ class Maze:
 ##########################
 # Main App
 
+game = Maze(7, 6)
+
+
+# (x, y, isLeft, isRight, isTop, isBottom)
+# First Row
+game.addMazeSquare(0, 0, True, False, True, False)
+game.addMazeSquare(1, 0, False, False, True, True)
+game.addMazeSquare(2, 0, False, False, True, False)
+game.addMazeSquare(3, 0, False, True, True, False)
+game.addMazeSquare(4, 0, True, False, True, False)
+game.addMazeSquare(5, 0, False, False, True, False)
+game.addMazeSquare(6, 0, False, True, True, True)
+
+
+

@@ -33,7 +33,13 @@ class Stack:
         return self.count() == 0
 ################
 class MazeNode:
-    def __init__(self, x, y, isLeft, isRight, isTop, isBottom):
+    # _x = 0
+    # _y = 0
+    # _isLeft = False
+    # _isRight = False
+    # _isTop = False
+    # _isBottom = False
+    def __init__(self, y, x, isLeft, isRight, isTop, isBottom):
         self._x = x
         self._y = y
         self._isLeft = isLeft
@@ -64,7 +70,7 @@ class Maze:
         self._goalNode = (x, y)
 
     def addMazeSquare(self, x, y, isLeft, isRight, isTop, isBottom):
-        newMazeSquare = MazeNode(x, y, isLeft, isRight, isTop, isBottom)
+        newMazeSquare = MazeNode(y, x, isLeft, isRight, isTop, isBottom)
         self._maze[y][x] = newMazeSquare
 
     def getMazeNodeByXY(self, x, y):
@@ -77,11 +83,11 @@ class Maze:
         children = []
         if (x > 0 and not self._maze[y][x]._isLeft):
             children.append((self._maze[y][x - 1]._x, self._maze[y][x - 1]._y))
-        if (x < self._xSquare - 1 and not self._maze[y][x]._isRight):
+        if (x < (self._xSquare - 1) and not self._maze[y][x]._isRight):
             children.append((self._maze[y][x + 1]._x, self._maze[y][x + 1]._y))
         if (y > 0 and not self._maze[y][x]._isTop):
             children.append((self._maze[y - 1][x]._x, self._maze[y - 1][x]._y))
-        if (x < self._ySquare - 1 and not self._maze[y][x]._isBottom):
+        if (y < (self._ySquare - 1) and not self._maze[y][x]._isBottom):
             children.append((self._maze[y + 1][x]._x, self._maze[y + 1][x]._y))
         return children
 
@@ -95,12 +101,17 @@ class Maze:
 
         while (not stack.isEmpty()):
             currentPath = stack.pop()
+            # print("Current Path", currentPath)
             currentXY = currentPath[-1]
+            # print("Current XY", currentXY)
             if (self._goalNode == currentXY):
                 paths.append(currentPath)
+                # print(paths)
             currentNode = self.getMazeNodeByCoords(currentXY)
             currentChildren = self.getMazeNodeChildren(currentXY[0], currentXY[1])[::-1]
+            # print(currentChildren)
             for child in currentChildren:
+                # print(child)
                 if (child in currentPath):
                     continue
                 stack.push(currentPath + [child])
@@ -196,8 +207,13 @@ game.addMazeSquare(4, 5, True, False, False, True)
 game.addMazeSquare(5, 5, False, True, False, True)
 game.addMazeSquare(6, 5, True, False, False, True)
 
-game.setStartNode(0, 1)
+
+# print(game._maze)
+game.setStartNode(0, 0)
 game.setGoalNode(6, 5)
+
+# print(game._startNode)
+# print(game._goalNode)
 
 print("Using Depth First : ")
 print(game.depthFirstTraverse())

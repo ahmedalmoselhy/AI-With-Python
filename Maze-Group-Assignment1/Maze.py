@@ -127,6 +127,7 @@ class Maze:
 
         while (not queue.isEmpty()):
             currentPath = queue.dequeue()
+            # print("Current Path", currentPath)
             currentXY = currentPath[-1]
             if (self._goalNode == currentXY):
                 paths.append(currentPath)
@@ -144,79 +145,138 @@ class Maze:
 # Main App
 
 
-# The maze has (#Columns, #Rows)
-game = Maze(7, 6)
+# =================================================================================
+# =================================================================================
+# =================================================================================
+# OUR NEW MAZE
 
-# from here on it depends on the maze you want to solve
-# depending on the maze you have, it's design and size, the values will be different,
-# also the code will be bigger or smaller
-# Values Are :
+
+our_maze = Maze(10 , 10 )
 # (x, y, isLeft, isRight, isTop, isBottom)
-
 # First Row
-game.addMazeSquare(0, 0, True, False, True, False)
-game.addMazeSquare(1, 0, False, False, True, True)
-game.addMazeSquare(2, 0, False, False, True, False)
-game.addMazeSquare(3, 0, False, True, True, False)
-game.addMazeSquare(4, 0, True, False, True, False)
-game.addMazeSquare(5, 0, False, False, True, False)
-game.addMazeSquare(6, 0, False, True, True, True)
-
+our_maze.addMazeSquare(0, 0, 1, 0, 1, 0)
+our_maze.addMazeSquare(0, 1, 0, 0, 1, 1)
+our_maze.addMazeSquare(0, 2, 0, 1, 1, 0)
+our_maze.addMazeSquare(0, 3, 1, 0, 1, 0)
+our_maze.addMazeSquare(0, 4, 0, 0, 1, 0)
+our_maze.addMazeSquare(0, 5, 0, 0, 1, 1)
+our_maze.addMazeSquare(0, 6, 0, 0, 1, 1)
+our_maze.addMazeSquare(0, 7, 0, 1, 1, 1)
+our_maze.addMazeSquare(0, 8, 1, 0, 1, 0)
+our_maze.addMazeSquare(0, 9, 0, 1, 1, 0)
 # Second Row
-game.addMazeSquare(0, 1, False, False, False, True)
-game.addMazeSquare(1, 1, False, True, True, True)
-game.addMazeSquare(2, 1, True, True, False, False)
-game.addMazeSquare(3, 1, True, True, False, True)
-game.addMazeSquare(4, 1, True, True, False, False)
-game.addMazeSquare(5, 1, True, False, False, True)
-game.addMazeSquare(6, 1, False, True, True, False)
-
+our_maze.addMazeSquare( 1 , 0 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 1 , 1 , 0, 1, 1,1 )
+our_maze.addMazeSquare( 1 , 2 , 1, 1, 0,0)
+our_maze.addMazeSquare( 1 , 3 , 1, 1, 0, 0)
+our_maze.addMazeSquare( 1 , 4 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 1 , 5 , 0, 0, 1, 1)
+our_maze.addMazeSquare( 1 , 6 , 0, 0, 1, 1)
+our_maze.addMazeSquare( 1 , 7 , 0, 1, 1, 0)
+our_maze.addMazeSquare( 1 , 8 , 1,1, 0, 0)
+our_maze.addMazeSquare( 1 , 9 , 1, 1, 0,0)
 # Third Row
-game.addMazeSquare(0, 2, True, False, True, False)
-game.addMazeSquare(1, 2, False, False, True, False)
-game.addMazeSquare(2, 2, False, False, False, False)
-game.addMazeSquare(3, 2, False, False, True, True)
-game.addMazeSquare(4, 2, False, True, False, False)
-game.addMazeSquare(5, 2, True, False, True, False)
-game.addMazeSquare(6, 2, False, True, False, True)
-
-# Forth Row
-game.addMazeSquare(0, 3, True, True, False, False)
-game.addMazeSquare(1, 3, True, True, False, False)
-game.addMazeSquare(2, 3, True, False, False, True)
-game.addMazeSquare(3, 3, False, True, True, False)
-game.addMazeSquare(4, 3, True, True, False, False)
-game.addMazeSquare(5, 3, True, False, False, True)
-game.addMazeSquare(6, 3, False, True, True, False)
+our_maze.addMazeSquare( 2 , 0 , 1, 1, 1, 0)
+our_maze.addMazeSquare( 2 , 1 , 1, 0, 1,0 )
+our_maze.addMazeSquare( 2 , 2 , 0, 1, 0,1)
+our_maze.addMazeSquare( 2 , 3 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 2 , 4 , 0, 0, 1, 1)
+our_maze.addMazeSquare( 2 , 5 , 0, 1, 1, 0)
+our_maze.addMazeSquare( 2 , 6 , 1, 1, 1,0)
+our_maze.addMazeSquare( 2 , 7 , 1, 1,0, 0)
+our_maze.addMazeSquare( 2 , 8 , 1,1, 0, 0)
+our_maze.addMazeSquare( 2 , 9 , 1, 1, 0,0)
+# Fourth Row
+our_maze.addMazeSquare( 3 , 0 , 1, 1, 0, 0)
+our_maze.addMazeSquare( 3 , 1 , 1, 0, 0,1 )
+our_maze.addMazeSquare( 3 , 2 , 0, 0, 1,1)
+our_maze.addMazeSquare( 3 , 3 , 0, 1, 1, 0)
+our_maze.addMazeSquare( 3 , 4 , 1, 0, 1, 0)
+our_maze.addMazeSquare( 3 , 5 , 0, 0, 0, 1)
+our_maze.addMazeSquare( 3 , 6 , 0, 1,0,0)
+our_maze.addMazeSquare( 3 , 7 , 1, 0,0, 0)
+our_maze.addMazeSquare( 3 , 8 , 0,1, 0,1)
+our_maze.addMazeSquare( 3 , 9 , 1, 1, 0,0)
 
 # Fifth Row
-game.addMazeSquare(0, 4, True, True, False, False)
-game.addMazeSquare(1, 4, True, False, False, True)
-game.addMazeSquare(2, 4, False, True, True, False)
-game.addMazeSquare(3, 4, True, True, False, True)
-game.addMazeSquare(4, 4, True, True, False, False)
-game.addMazeSquare(5, 4, True, True, True, False)
-game.addMazeSquare(6, 4, True, True, False, False)
+our_maze.addMazeSquare( 4 , 0 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 4 , 1 , 0, 0, 1,0 )
+our_maze.addMazeSquare( 4 , 2 , 0, 1, 1,1)
+our_maze.addMazeSquare( 4 , 3 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 4 , 4 , 0, 1, 0, 1)
+our_maze.addMazeSquare( 4 , 5 , 1, 0, 1, 0)
+our_maze.addMazeSquare( 4 , 6 , 0, 1, 0,1)
+our_maze.addMazeSquare( 4 , 7 , 1, 0,0, 1)
+our_maze.addMazeSquare( 4 , 8 , 0,1, 1, 1)
+our_maze.addMazeSquare( 4 , 9 , 1, 1, 0,0)
 
 # Sixth Row
-game.addMazeSquare(0, 5, True, False, False, True)
-game.addMazeSquare(1, 5, False, True, True, True)
-game.addMazeSquare(2, 5, True, False, False, True)
-game.addMazeSquare(3, 5, False, True, True, True)
-game.addMazeSquare(4, 5, True, False, False, True)
-game.addMazeSquare(5, 5, False, True, False, True)
-game.addMazeSquare(6, 5, True, False, False, True)
+our_maze.addMazeSquare( 5 , 0 , 1, 1, 1, 0)
+our_maze.addMazeSquare( 5 , 1 , 1, 0, 0,1 )
+our_maze.addMazeSquare( 5 , 2 , 0, 0, 1,1)
+our_maze.addMazeSquare( 5 , 3 , 0, 0, 1, 1)
+our_maze.addMazeSquare( 5 , 4 , 0, 0, 1,0)
+our_maze.addMazeSquare( 5 , 5 , 0, 1, 0,1)
+our_maze.addMazeSquare( 5 , 6 , 1, 1, 1,0)
+our_maze.addMazeSquare( 5 , 7 , 1, 0,1, 0)
+our_maze.addMazeSquare( 5 , 8 , 0,1, 1, 0)
+our_maze.addMazeSquare( 5 , 9 , 1, 0, 0,0)
+
+# Seventh Row
+our_maze.addMazeSquare( 6 , 0 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 6 , 1 , 0, 0, 1,1 )
+our_maze.addMazeSquare( 6 , 2 , 0, 0, 1,0)
+our_maze.addMazeSquare( 6 , 3 , 0, 1,1, 1)
+our_maze.addMazeSquare( 6 , 4 , 1, 1, 0, 0)
+our_maze.addMazeSquare( 6 , 5 , 1, 0, 1, 0)
+our_maze.addMazeSquare( 6 , 6 , 0, 0, 0,1)
+our_maze.addMazeSquare( 6 , 7 , 0, 1,0, 0)
+our_maze.addMazeSquare( 6 , 8 , 1,0, 0, 1)
+our_maze.addMazeSquare( 6 , 9 , 0, 1, 0,1)
+
+# Eighth Row
+
+our_maze.addMazeSquare( 7 , 0 , 1, 0, 1, 0)
+our_maze.addMazeSquare( 7 , 1 , 0, 0, 1,1 )
+our_maze.addMazeSquare( 7 , 2 , 0, 0, 0,1)
+our_maze.addMazeSquare( 7 , 3 , 0, 0, 1, 1)
+our_maze.addMazeSquare( 7 , 4 , 0, 1, 0, 1)
+our_maze.addMazeSquare( 7 , 5 , 1, 0, 0, 0)
+our_maze.addMazeSquare( 7 , 6 , 0, 1, 1,0)
+our_maze.addMazeSquare( 7 , 7 , 1, 1,0, 0)
+our_maze.addMazeSquare( 7 , 8 , 1,0, 1, 1)
+our_maze.addMazeSquare( 7 , 9 , 0, 1, 1,0)
+
+# Ninth Row
+our_maze.addMazeSquare( 8 , 0 , 1, 1, 0, 1)
+our_maze.addMazeSquare( 8 , 1 , 1, 0, 1,0 )
+our_maze.addMazeSquare( 8 , 2 , 0, 0, 1,1)
+our_maze.addMazeSquare( 8 , 3 , 0, 0, 1, 0)
+our_maze.addMazeSquare( 8 , 4 , 0, 1, 1, 0)
+our_maze.addMazeSquare( 8 , 5 , 1, 1, 0, 0)
+our_maze.addMazeSquare( 8 , 6 , 1, 1, 0,0)
+our_maze.addMazeSquare( 8 , 7 , 1, 0,0, 1)
+our_maze.addMazeSquare( 8 , 8 , 0,0, 1, 1)
+our_maze.addMazeSquare( 8 , 9 , 0, 1, 0,1)
+
+# Tenth Row
+our_maze.addMazeSquare( 9 , 0 , 0, 0, 1,1)
+our_maze.addMazeSquare( 9 , 1 , 0, 1, 0,1 )
+our_maze.addMazeSquare( 9 , 2 , 1, 0, 1,1)
+our_maze.addMazeSquare( 9 , 3 , 0, 1, 0, 1)
+our_maze.addMazeSquare( 9 , 4 , 1, 0, 0, 1)
+our_maze.addMazeSquare( 9 , 5 , 0, 1, 0, 1)
+our_maze.addMazeSquare( 9 , 6 , 1, 0, 0,1)
+our_maze.addMazeSquare( 9 , 7 , 0, 0,1, 1)
+our_maze.addMazeSquare( 9 , 8 , 0,0, 1, 1)
+our_maze.addMazeSquare( 9 , 9 , 0, 1, 1,1)
 
 
-# print(game._maze)
-game.setStartNode(0, 0)
-game.setGoalNode(6, 5)
-
-# print(game._startNode)
-# print(game._goalNode)
+our_maze.setStartNode(5, 9)
+our_maze.setGoalNode(9, 0)
 
 print("Using Depth First : ")
-print(game.depthFirstTraverse())
+print(our_maze.depthFirstTraverse())
 print("\n")
 print("Using Breadth First : ")
-print(game.breadthFirstTraverse())
+print(our_maze.breadthFirstTraverse())

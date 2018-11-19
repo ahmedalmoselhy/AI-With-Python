@@ -1,4 +1,5 @@
 import serial
+from time import sleep
 
 
 class Queue:
@@ -33,6 +34,7 @@ class Stack:
     def isEmpty(self):
         return self.count() == 0
 ################
+# Creating a maze
 class MazeNode:
     # _x = 0
     # _y = 0
@@ -142,7 +144,25 @@ class Maze:
                 queue.enqueue(currentPath + [child])
         return paths
 
+# Serial Communication With Arduino Via Bluetooth
 
+class SerialTransfer(object):
+    def __init__(self, port, baudRate = 9600):
+        self._port = port
+        self._baudRate = baudRate
+        # Establish the connection on a specific port with a specific baud rate
+        self._serial = serial.Serial(self._port, self._baudRate, timeout=5)
+        self._serial.flushInput()
+        self._serial.flushOutput()
+        print("== SERIAL CONNECTION IS ESTABLISHED SUCCESSFULLY! ==")
+
+    def __del__(self):
+        self.close()
+
+    def close(self):
+        self._serial.close()
+
+    
 
 ##########################
 # Main App
@@ -151,7 +171,6 @@ class Maze:
 # =================================================================================
 # =================================================================================
 # =================================================================================
-# OUR NEW MAZE
 
 t = True # There is a wall
 f = False # There is no wall

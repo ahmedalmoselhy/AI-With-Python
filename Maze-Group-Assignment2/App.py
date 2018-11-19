@@ -162,7 +162,18 @@ class SerialTransfer(object):
     def close(self):
         self._serial.close()
 
-    
+    def send(self, statement):
+        if(self._serial.isOpen()):
+            print("\n== SERIAL PORT IS OPENED == SENDING ==")
+            statement += '\r\n'
+            encoded = statement.strip().encode()
+            print("Serial is sending", encoded)
+            self._serial.write(encoded)
+            self._serial.flush()
+            sleep(1)
+        else:
+            print("\n== SERIAL PORT IS NOT OPENED! ==")
+
 
 ##########################
 # Main App

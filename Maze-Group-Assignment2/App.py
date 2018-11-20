@@ -144,6 +144,10 @@ class Maze:
                 queue.enqueue(currentPath + [child])
         return paths
 
+# =================================================================================
+# =================================================================================
+# =================================================================================
+
 # Serial Communication With Arduino Via Bluetooth
 
 class SerialTransfer(object):
@@ -313,9 +317,65 @@ our_maze.addMazeSquare(9, 9, f, t, t, t)
 our_maze.setStartNode(5, 9)
 our_maze.setGoalNode(9, 0)
 
-print("Using Depth First : ")
-print(our_maze.depthFirstTraverse())
-print("\n")
-print("Using Breadth First : ")
-print(our_maze.breadthFirstTraverse())
+
+
+# This part is responsible for sending the correct path of the maze to the arduino board
+
+paths = []
+paths.extend(our_maze.depthFirstTraverse())
+paths.extend(our_maze.breadthFirstTraverse())
+
+if(len(paths) > 0 ) :
+    minPath = paths[0]
+    for path in paths :
+        if(len(path) < len(minPath)) :
+            minPath = path
+    minPathStr = ""
+    for coord in minPath :
+        minPathStr += "(" + str(coord[0]) + "_" + str(coord[1]) + ")"
+    print("Min. Length Path:" , minPathStr)
+
+# ------------------------------------------------------------------
+print("=============================================")
+print("=============================================")
+
+# You must change the port from COM5 to the bluetooth port in your device
+
+t = SerialTransfer('COM5') # Change this port
+try:
+    t.send(minPathStr)
+    t.close()
+except Exception as es :
+    t.close()
+    print("Exception : " , ex)
+
+
+# =================================================================================
+# =================================================================================
+
+# TESTING STATEMENTS !!!!!
+# print("Using Depth First : ")
+# print(our_maze.depthFirstTraverse())
+# print("\n")
+# print("Using Breadth First : ")
+# print(our_maze.breadthFirstTraverse())
+
+
+# Serial Testing
+'''
+# here we create an object from the class and pass the port_name using the default baud rate which is 9600bps as a second parameter to constructor
+t = SerialTransfer('COM5')
+# here using the send method to send the string "Welcome" to the blutooth module  
+try:  
+    t.send("Welcome") 
+	#for i in range(5):  
+	#	stmt = t.recieve()
+	#	print("Recieved :  " , stmt ) 
+    t.close() 
+# if any Exception happened we close the connection and displaying the exception 
+except Exception as ex : 
+	t.close()
+	print("Exception : " , ex ) 
+
+'''
 

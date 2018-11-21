@@ -178,8 +178,18 @@ class SerialTransfer(object):
         else:
             print("\n== SERIAL PORT IS NOT OPENED! ==")
 
+    def recieve(self):
+        if (self._serial.isOpen()):
+            print("\nSerial Port Is Opened ! == recieve()")
+            recievedData = self._serial.readline()
+            stmt = recievedData.decode().strip()
+            return str(stmt)
+        else:
+            print("Serial Port Is Not Opened ! ")
+            return None
 
-##########################
+
+        ##########################
 # Main App
 
 
@@ -363,7 +373,8 @@ except Exception as es :
 
 # Serial Testing
 '''
-# here we create an object from the class and pass the port_name using the default baud rate which is 9600bps as a second parameter to constructor
+# here we create an object from the class and pass the port_name using the default baud rate which is 9600bps as a 
+second parameter to constructor
 t = SerialTransfer('COM5')
 # here using the send method to send the string "Welcome" to the blutooth module  
 try:  
